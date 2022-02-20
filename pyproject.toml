@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "loopmon"
+version = "0.1.0"
+description = "Lightewight monitor library for asyncio.EventLoop"
+authors = ["Byeonghoon Yoo <bh322yoo@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+
+[tool.poetry.dev-dependencies]
+flake8-black = "^0.2.4"
+black = "^22.1.0"
+flake8 = "^4.0.1"
+pytest = "^7.0.1"
+pytest-asyncio = "^0.18.1"
+pytest-cov = "^3.0.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
