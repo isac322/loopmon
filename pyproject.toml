@@ -1,9 +1,37 @@
 [tool.poetry]
 name = "loopmon"
-version = "0.1.0"
+version = "1.0.0"
 description = "Lightewight monitor library for asyncio.EventLoop"
 authors = ["Byeonghoon Yoo <bh322yoo@gmail.com>"]
 license = "MIT"
+readme = "README.md"
+keywords = ["asyncio", "monitoring", "eventloop", "lag", "delay"]
+repository = "https://github.com/isac322/loopmon"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: No Input/Output (Daemon)",
+    "Framework :: AsyncIO",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: Software Development",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Quality Assurance",
+    "Topic :: System",
+    "Topic :: System :: Monitoring",
+    "Typing :: Typed",
+]
 
 [tool.poetry.dependencies]
 python = "^3.7"
