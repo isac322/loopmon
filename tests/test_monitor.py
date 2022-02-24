@@ -8,6 +8,7 @@ from threading import Thread
 from typing import Generator
 
 import pytest
+from pytest_mock import MockerFixture
 
 import loopmon
 
@@ -38,7 +39,7 @@ def test_can_catch_loop_close() -> None:
     assert not monitor.running
 
 
-def test_can_execute_callback(mocker) -> None:
+def test_can_execute_callback(mocker: MockerFixture) -> None:
     interval = 0.01
 
     with with_event_loop() as loop:  # type: asyncio.AbstractEventLoop
@@ -52,7 +53,7 @@ def test_can_execute_callback(mocker) -> None:
     assert not monitor.running
 
 
-def test_can_detect_lag_comes_from_block_call(mocker) -> None:
+def test_can_detect_lag_comes_from_block_call(mocker: MockerFixture) -> None:
     interval = 0.01
     blocking_delay = 0.1
 
@@ -126,7 +127,7 @@ def test_can_stop_running_monitor() -> None:
         assert not any(t.get_name() == monitor.name for t in tasks)
 
 
-def test_can_detect_lag_of_another_thread(mocker) -> None:
+def test_can_detect_lag_of_another_thread(mocker: MockerFixture) -> None:
     delay_sec = 1
     interval = 0.1
 
