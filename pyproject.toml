@@ -45,6 +45,8 @@ pytest = "^7.0.1"
 pytest-cov = "^3.0.0"
 mypy = "^0.931"
 pytest-mock = "^3.7.0"
+flake8-isort = "^4.1.1"
+asyncmock = {version = "^0.4.2", python = "<3.8"}
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -106,3 +108,6 @@ exclude_lines = [
 
 [tool.pytest.ini_options]
 python_files = 'test_*.py'
+
+[tool.isort]
+profile = 'black'

@@ -1,12 +1,14 @@
 from __future__ import annotations
 
 import asyncio
+import sys
 import time
 from contextlib import contextmanager
 from threading import Thread
 from typing import Generator
 
 import pytest
+from pytest_mock import MockerFixture
 
 import loopmon
 
@@ -37,7 +39,7 @@ def test_can_catch_loop_close() -> None:
     assert not monitor.running
 
 
-def test_can_execute_callback(mocker) -> None:
+def test_can_execute_callback(mocker: MockerFixture) -> None:
     interval = 0.01
 
     with with_event_loop() as loop:  # type: asyncio.AbstractEventLoop
@@ -51,7 +53,7 @@ def test_can_execute_callback(mocker) -> None:
     assert not monitor.running
 
 
-def test_can_detect_lag_comes_from_block_call(mocker) -> None:
+def test_can_detect_lag_comes_from_block_call(mocker: MockerFixture) -> None:
     interval = 0.01
     blocking_delay = 0.1
 
@@ -101,6 +103,7 @@ def test_can_not_double_start() -> None:
             loop.run_until_complete(monitor.start())
 
 
+@pytest.mark.skipif(sys.version_info < (3, 8), reason='requires python3.8 or higher')
 def test_can_configure_task_name() -> None:
     with with_event_loop() as loop:  # type: asyncio.AbstractEventLoop
         monitor = loopmon.create(loop, name='loopmon_task')
@@ -124,7 +127,7 @@ def test_can_stop_running_monitor() -> None:
         assert not any(t.get_name() == monitor.name for t in tasks)
 
 
-def test_can_detect_lag_of_another_thread(mocker) -> None:
+def test_can_detect_lag_of_another_thread(mocker: MockerFixture) -> None:
     delay_sec = 1
     interval = 0.1
 

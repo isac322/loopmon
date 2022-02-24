@@ -26,6 +26,7 @@ jobs:
             ~/.cache/pypoetry/artifacts
             ~/.cache/pypoetry/cache/repositories
             ~/.cache/pip
+            poetry.lock
           key: ${{ matrix.python_ver }}-pip-${{ hashFiles('pyproject.toml') }}
           restore-keys: |
             ${{ matrix.python_ver }}-pip-
