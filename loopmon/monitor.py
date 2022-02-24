@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+import sys
 from abc import ABCMeta, abstractmethod
 from collections.abc import Iterable
 from datetime import datetime, timezone
@@ -53,7 +54,7 @@ class EventLoopMonitor(metaclass=ABCMeta):
 
         :param interval: How often the event loop collects metrics. (seconds)
         :param callbacks: Callback functions to process metrics collected by the monitor.
-        :param name: The Task name to use when installing the monitor into the event loop.
+        :param name: The Task name to use when installing the monitor into the event loop. [Python 3.8+ required]
         """
         super().__init__()
 
@@ -89,6 +90,7 @@ class EventLoopMonitor(metaclass=ABCMeta):
     def name(self) -> Optional[str]:
         """
         The Task name to use when installing the monitor into the event loop.
+        Only supported on Python 3.8+.
         """
         return self._name
 
@@ -134,7 +136,10 @@ class EventLoopMonitor(metaclass=ABCMeta):
         if self.installed:
             raise ValueError('This monitor already installed into (the given or other) loop')
 
-        loop.create_task(self.start(), name=self._name)
+        if sys.version_info >= (3, 8, 0):
+            loop.create_task(self.start(), name=self._name)
+        else:
+            loop.create_task(self.start())
         self._installed = True
 
 

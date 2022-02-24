@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+import sys
 import time
 from contextlib import contextmanager
 from threading import Thread
@@ -101,6 +102,7 @@ def test_can_not_double_start() -> None:
             loop.run_until_complete(monitor.start())
 
 
+@pytest.mark.skipif(sys.version_info < (3, 8), reason='requires python3.8 or higher')
 def test_can_configure_task_name() -> None:
     with with_event_loop() as loop:  # type: asyncio.AbstractEventLoop
         monitor = loopmon.create(loop, name='loopmon_task')
