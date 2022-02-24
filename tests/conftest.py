@@ -8,7 +8,7 @@ from pytest_mock import MockerFixture, _util
 
 @pytest.fixture(scope='function')
 def mocker(pytestconfig, mocker) -> None:
-    """ python 3.7 does not contains AsyncMock """
+    """python 3.7 does not contains AsyncMock"""
     if sys.version_info >= (3, 8):
         return mocker
 
