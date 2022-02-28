@@ -33,6 +33,7 @@ jobs:
       - uses: abatilo/actions-poetry@v2.1.4
       - name: Install dependencies
         run: |
+          poetry lock
           poetry install --remove-untracked
       - name: Lint with flake8
         run: |
