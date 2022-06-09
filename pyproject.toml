@@ -43,7 +43,7 @@ black = "^22.1.0"
 flake8 = "^4.0.1"
 pytest = "^7.0.1"
 pytest-cov = "^3.0.0"
-mypy = "^0.950"
+mypy = "^0.961"
 pytest-mock = "^3.7.0"
 flake8-isort = "^4.1.1"
 asyncmock = {version = "^0.4.2", python = "<3.8"}
