@@ -4,7 +4,14 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    commit-message:
+      prefix: "ci(gha)"
+      include: "scope"
   - package-ecosystem: "pip"
     directory: "/"
     schedule:
       interval: "daily"
+    commit-message:
+      prefix: "build(dep)"
+      prefix-development: "build(deps-dev)"
+      include: "scope"
