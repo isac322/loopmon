@@ -45,7 +45,7 @@ pytest = "^7.0.1"
 pytest-cov = "^4.0.0"
 mypy = "^0.990"
 pytest-mock = "^3.7.0"
-flake8-isort = "^5.0.0"
+flake8-isort = "^6.0.0"
 asyncmock = {version = "^0.4.2", python = "<3.8"}
 
 [build-system]
