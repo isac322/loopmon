@@ -1,11 +1,14 @@
 from __future__ import annotations
 
 import asyncio
-from typing import Any, Optional, Type, TypeVar, cast, overload
+from collections.abc import Callable, Iterable
+from typing import Optional, TypeVar, overload
 
 from loopmon.monitor import Callback, EventLoopMonitor, SleepEventLoopMonitor
+from typing_extensions import ParamSpec
 
 _MT = TypeVar('_MT', bound=EventLoopMonitor)
+_MonCon = ParamSpec('_MonCon')
 
 __all__ = (
     'Callback',
@@ -18,29 +21,29 @@ __all__ = (
 @overload
 def create(
     loop: Optional[asyncio.AbstractEventLoop] = None,
-    monitor_cls: Type[SleepEventLoopMonitor] = SleepEventLoopMonitor,
-    *args: Any,
-    **kwargs: Any,
+    interval: float = ...,
+    callbacks: Iterable[Callback] = ...,
+    name: Optional[str] = ...,
 ) -> SleepEventLoopMonitor:
     pass
 
 
 @overload
 def create(
-    loop: Optional[asyncio.AbstractEventLoop],
-    monitor_cls: Type[_MT],
-    *args: Any,
-    **kwargs: Any,
+    loop: Optional[asyncio.AbstractEventLoop] = None,
+    monitor_cls: Callable[_MonCon, _MT] = ...,
+    *args: _MonCon.args,
+    **kwargs: _MonCon.kwargs,
 ) -> _MT:
     pass
 
 
 # https://github.com/python/mypy/issues/3737#issuecomment-465355737
-def create(  # type: ignore[no-untyped-def]
+def create(  # type: ignore[misc]
     loop: Optional[asyncio.AbstractEventLoop] = None,
-    monitor_cls=SleepEventLoopMonitor,
-    *args: Any,
-    **kwargs: Any,
+    monitor_cls: Callable[_MonCon, _MT] = SleepEventLoopMonitor,  # type: ignore[assignment]
+    *args: _MonCon.args,
+    **kwargs: _MonCon.kwargs,
 ) -> _MT:
     """
     Creates a monitor object that can monitor an event loop, installs it in a given event loop, and starts monitoring.
@@ -70,6 +73,6 @@ def create(  # type: ignore[no-untyped-def]
     :return:
     """
 
-    mon = cast(Type[_MT], monitor_cls)(*args, **kwargs)
+    mon = monitor_cls(*args, **kwargs)
     mon.install_to_loop(loop)
     return mon

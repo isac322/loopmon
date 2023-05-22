@@ -5,7 +5,7 @@ import sys
 from abc import ABCMeta, abstractmethod
 from collections.abc import Iterable
 from datetime import datetime, timezone
-from typing import NoReturn, Optional, Tuple
+from typing import Optional, Tuple
 
 from typing_extensions import Protocol, runtime_checkable
 
@@ -95,7 +95,7 @@ class EventLoopMonitor(metaclass=ABCMeta):
         return self._name
 
     @abstractmethod
-    async def start(self) -> NoReturn:
+    async def start(self) -> None:
         """
         A coroutine function to start monitoring.
         Since it is an infinite loop, it is generally not recommended to `await'.
@@ -161,7 +161,7 @@ class SleepEventLoopMonitor(EventLoopMonitor):
     def running(self) -> bool:
         return self._started
 
-    async def start(self) -> NoReturn:
+    async def start(self) -> None:
         if self.running:
             raise ValueError('This monitor already installed into (the given or other) loop')
 
@@ -170,7 +170,7 @@ class SleepEventLoopMonitor(EventLoopMonitor):
         except asyncio.CancelledError:
             await self.stop()
 
-    async def _start(self) -> NoReturn:
+    async def _start(self) -> None:
         self._started = True
         loop = asyncio.get_running_loop()
 
