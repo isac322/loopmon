@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "loopmon"
-version = "1.0.0"
+version = "1.0.1"
 description = "Lightewight monitor library for asyncio.EventLoop"
 authors = ["Byeonghoon Yoo <bh322yoo@gmail.com>"]
 license = "MIT"
