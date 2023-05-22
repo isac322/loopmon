@@ -4,8 +4,9 @@ import asyncio
 from collections.abc import Callable, Iterable
 from typing import Optional, TypeVar, overload
 
-from loopmon.monitor import Callback, EventLoopMonitor, SleepEventLoopMonitor
 from typing_extensions import ParamSpec
+
+from loopmon.monitor import Callback, EventLoopMonitor, SleepEventLoopMonitor
 
 _MT = TypeVar('_MT', bound=EventLoopMonitor)
 _MonCon = ParamSpec('_MonCon')
