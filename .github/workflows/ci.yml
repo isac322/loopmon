@@ -15,26 +15,17 @@ jobs:
       matrix:
         python_ver: [ '3.7', '3.8', '3.9', '3.10', '3.11' ]
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup Python
-        uses: actions/setup-python@v4
+      - uses: actions/checkout@v3
+      - name: Install poetry
+        run: pipx install poetry
+      - uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python_ver }}
-      - uses: actions/cache@v3
-        with:
-          path: |
-            ~/.cache/pypoetry/artifacts
-            ~/.cache/pypoetry/cache/repositories
-            ~/.cache/pip
-            poetry.lock
-          key: ${{ matrix.python_ver }}-pip-${{ hashFiles('pyproject.toml') }}
-          restore-keys: |
-            ${{ matrix.python_ver }}-pip-
-      - uses: abatilo/actions-poetry@v2.3.0
+          cache: 'poetry'
       - name: Install dependencies
         run: |
           poetry lock
-          poetry install --remove-untracked
+          poetry install --no-root --sync
       - name: Lint with flake8
         run: |
           poetry run flake8 .
