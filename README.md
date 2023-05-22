@@ -7,7 +7,7 @@
 [![PyPI - Wheel](https://img.shields.io/pypi/wheel/loopmon?style=flat-square&logo=pypi)](https://pypi.org/project/loopmon/)
 [![Python Version](https://img.shields.io/pypi/pyversions/loopmon.svg?style=flat-square&logo=python)](https://pypi.org/project/loopmon/)
 [![GitHub last commit (branch)](https://img.shields.io/github/last-commit/isac322/loopmon/master?logo=github&style=flat-square)](https://github.com/isac322/loopmon/commits/master)
-[![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/isac322/loopmon/CI/master?logo=github&style=flat-square)](https://github.com/isac322/loopmon/actions)
+[![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/isac322/loopmon/ci.yml?branch=master&logo=github&style=flat-square)](https://github.com/isac322/loopmon/actions)
 [![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg?style=flat-square)](https://github.com/psf/black)
 
 loopmon is a lightweight library that can detect throttling of event loops.
