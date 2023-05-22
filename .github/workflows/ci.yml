@@ -17,15 +17,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Install poetry
-        run: pipx install poetry
+        run: |
+          pipx install poetry
+          poetry lock
       - uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python_ver }}
           cache: 'poetry'
       - name: Install dependencies
-        run: |
-          poetry lock
-          poetry install --no-root --sync
+        run: poetry install --no-root --sync
       - name: Lint with flake8
         run: |
           poetry run flake8 .
